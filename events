@@ -1,0 +1,33 @@
+const db = require("wio.db")
+
+module.exports = async(client, member) => {
+
+if(! await db.has("otorol_" + member.guild.id)) {
+   return;
+}
+
+var role = await db.fetch("otorol_" + member.guild.id)
+
+var kisi = client.guilds.cache.get(member.guild.id).members.cache.get(member.id)
+
+kisi.roles.add(role)
+
+}
+// -Bot giriş kısmı-
+module.exports = (client) => {
+
+var oynuyorkısımları = [
+"Prefix: c!",
+"cyber Bot",
+"göreve hazır."
+]
+
+
+setInterval(function() {
+
+        var random = Math.floor(Math.random()*(oynuyorkısımları.length-0+1)+0);
+       client.user.setActivity(oynuyorkısımları[random], { type: 'LISTENING' });
+        }, 2 * 3000);
+
+    console.log("Bot başarı ile giriş yaptı.")
+}
